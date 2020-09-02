@@ -18,18 +18,6 @@ RUN apt-get update && \
   libappindicator3-1 \
   xdg-utils \
   zip \
-  # install Chinese fonts
-  # this list was copied from https://github.com/jim3ma/docker-leanote
-  fonts-arphic-bkai00mp \
-  fonts-arphic-bsmi00lp \
-  fonts-arphic-gbsn00lp \
-  fonts-arphic-gkai00mp \
-  fonts-arphic-ukai \
-  fonts-arphic-uming \
-  fonts-liberation \
-  ttf-wqy-zenhei \
-  ttf-wqy-microhei \
-  xfonts-wqy \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
