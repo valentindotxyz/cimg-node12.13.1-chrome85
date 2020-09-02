@@ -14,10 +14,9 @@ RUN apt-get update && \
   libxtst6 \
   xauth \
   xvfb \
-  fonts-liberation \
   libappindicator3-1 \
   xdg-utils \
-  zip
+  zip \
   # install Chinese fonts
   # this list was copied from https://github.com/jim3ma/docker-leanote
   fonts-arphic-bkai00mp \
@@ -26,6 +25,7 @@ RUN apt-get update && \
   fonts-arphic-gkai00mp \
   fonts-arphic-ukai \
   fonts-arphic-uming \
+  fonts-liberation \
   ttf-wqy-zenhei \
   ttf-wqy-microhei \
   xfonts-wqy \
