@@ -1,4 +1,4 @@
-FROM cimg/node:12.16
+FROM node:12.13.1-buster
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
