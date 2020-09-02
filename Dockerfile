@@ -1,4 +1,4 @@
-FROM node:12.13.1-buster
+FROM cimg/base:stable
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
@@ -26,15 +26,20 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@latest
-RUN npm install --force -g yarn@latest
+ENV NODE_VERSION 12.13.1
+RUN curl -L -o node.tar.xz "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" && \
+	sudo tar -xJf node.tar.xz -C /usr/local --strip-components=1 && \
+	rm node.tar.xz && \
+	sudo ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-# a few environment variables to make NPM installs easier
-# good colors for most applications
-ENV TERM xterm
-# avoid million NPM install messages
+ENV YARN_VERSION 1.22.4
+RUN curl -L -o yarn.tar.gz "https://yarnpkg.com/downloads/${YARN_VERSION}/yarn-v${YARN_VERSION}.tar.gz" && \
+	sudo tar -xzf yarn.tar.gz -C /opt/ && \
+	rm yarn.tar.gz && \
+	sudo ln -s /opt/yarn-v${YARN_VERSION}/bin/yarn /usr/local/bin/yarn && \
+	sudo ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/local/bin/yarnpkg
+
 ENV npm_config_loglevel warn
-# allow installing when the main user is root
 ENV npm_config_unsafe_perm true
 
 # versions of local tools
@@ -68,10 +73,6 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 # Add zip utility - it comes in very handy
 RUN apt-get update && apt-get install -y zip
 
-# add codecs needed for video playback in firefox
-# https://github.com/cypress-io/cypress-docker-images/issues/150
-RUN apt-get install mplayer -y
-
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
@@ -80,11 +81,3 @@ RUN echo  " node version:    $(node -v) \n" \
   "Chrome version:  $(google-chrome --version) \n" \
   "git version:     $(git --version) \n" \
   "whoami:          $(whoami) \n"
-
-# a few environment variables to make NPM installs easier
-# good colors for most applications
-ENV TERM xterm
-# avoid million NPM install messages
-ENV npm_config_loglevel warn
-# allow installing when the main user is root
-ENV npm_config_unsafe_perm true
