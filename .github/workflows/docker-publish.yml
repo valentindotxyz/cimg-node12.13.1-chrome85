@@ -14,7 +14,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: docker-node12.13.1-chrome85
+  IMAGE_NAME: node12_13_1-chrome85
 
 jobs:
   # Push image to GitHub Packages.
