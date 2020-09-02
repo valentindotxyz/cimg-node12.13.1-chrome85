@@ -14,7 +14,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: node12_13_1-chrome85
+  IMAGE_NAME: cimg-node12_13_1-chrome85
 
 jobs:
   # Push image to GitHub Packages.
