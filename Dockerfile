@@ -18,6 +18,7 @@ RUN apt-get update && \
   libappindicator3-1 \
   xdg-utils \
   zip \
+  fonts-liberation \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
