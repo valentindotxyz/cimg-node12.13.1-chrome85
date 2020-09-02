@@ -12,6 +12,7 @@ RUN apt-get update && \
   libxss1 \
   libasound2 \
   libxtst6 \
+  libgbm1 \
   xauth \
   xvfb \
   libappindicator3-1 \
@@ -54,7 +55,6 @@ RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.co
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
   rm -f /usr/src/google-chrome-stable_current_amd64.deb
-RUN google-chrome --version
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
